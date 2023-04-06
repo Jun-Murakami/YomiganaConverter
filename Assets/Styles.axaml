@@ -41,9 +41,7 @@
 			<Setter Property="FontFamily" Value="Migu 1M Regular, Hiragino Sans, Noto Sans CJK JP, BIZ UDゴシック, Meiryo UI" />
 		</Style>
 		<Style Selector="ToggleSwitch">
-			<Setter Property="Margin" Value="0,0,-20,0" />
-			<Setter Property="OffContent" Value="" />
-			<Setter Property="OnContent" Value="" />
+			<Setter Property="Margin" Value="0,0,10,0" />
 		</Style>
 		<Style Selector="Window">
 			<Setter Property="Padding" Value="10,10,0,10" />
