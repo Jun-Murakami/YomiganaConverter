@@ -1,0 +1,52 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+	<Styles>
+		<Style Selector="Button">
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontSize" Value="18" />
+			<Setter Property="Height" Value="40" />
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="Padding" Value="18,10"/>
+			<Setter Property="Margin" Value="5,8" />
+			<Setter Property="FontFamily" Value="Migu 1M Regular, Hiragino Sans, Noto Sans CJK JP, BIZ UDゴシック, Meiryo UI" />
+			<Setter Property="Transitions">
+				<Transitions>
+					<BrushTransition Property="Background" Duration="0:0:0.5"/>
+				</Transitions>
+			</Setter>
+			<Setter Property="Background" Value="rgb(0,120,215)" />
+		</Style>
+		<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="rgb(0,230,215)" />
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+		<Style Selector="TextBlock">
+			<Setter Property="FontSize" Value="18" />
+			<Setter Property="Height" Value="20" />
+			<Setter Property="Margin" Value="0,8,15,8" />
+			<Setter Property="FontFamily" Value="Migu 1M Regular, Hiragino Sans, Noto Sans CJK JP, BIZ UDゴシック, Meiryo UI" />
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="LineHeight" Value="20" />
+			<Setter Property="Margin" Value="0,0,10,0" />
+			<Setter Property="FontFamily" Value="Migu 1M Regular, Hiragino Sans, Noto Sans CJK JP, BIZ UDゴシック, Meiryo UI" />
+		</Style>
+		<Style Selector="ToggleSwitch">
+			<Setter Property="Margin" Value="0,0,-20,0" />
+			<Setter Property="OffContent" Value="" />
+			<Setter Property="OnContent" Value="" />
+		</Style>
+		<Style Selector="Window">
+			<Setter Property="Padding" Value="10,10,0,10" />
+		</Style>
+	</Styles>
+</Styles>
