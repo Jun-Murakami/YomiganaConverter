@@ -10,38 +10,51 @@
 	<Styles>
 		<Style Selector="Button">
 			<Setter Property="Foreground" Value="White" />
-			<Setter Property="FontSize" Value="18" />
-			<Setter Property="Height" Value="40" />
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="Height" Value="38" />
 			<Setter Property="CornerRadius" Value="8"/>
 			<Setter Property="Padding" Value="18,10"/>
 			<Setter Property="Margin" Value="5,8" />
 			<Setter Property="FontFamily" Value="Migu 1M Regular, Hiragino Sans, Noto Sans CJK JP, BIZ UDゴシック, Meiryo UI" />
 			<Setter Property="Transitions">
 				<Transitions>
-					<BrushTransition Property="Background" Duration="0:0:0.5"/>
+					<BrushTransition Property="Background" Duration="0:0:0.2"/>
 				</Transitions>
 			</Setter>
 			<Setter Property="Background" Value="rgb(0,120,215)" />
+		</Style>
+		<Style Selector="Button:pointerover">
+			<Setter Property="Background" Value="rgb(0,230,215)" />
+			<Setter Property="Foreground" Value="White" />
 		</Style>
 		<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
 			<Setter Property="Background" Value="rgb(0,230,215)" />
 			<Setter Property="Foreground" Value="White" />
 		</Style>
 		<Style Selector="TextBlock">
-			<Setter Property="FontSize" Value="18" />
+			<Setter Property="FontSize" Value="16" />
 			<Setter Property="Height" Value="20" />
 			<Setter Property="Margin" Value="0,8,15,8" />
 			<Setter Property="FontFamily" Value="Migu 1M Regular, Hiragino Sans, Noto Sans CJK JP, BIZ UDゴシック, Meiryo UI" />
 		</Style>
 		<Style Selector="TextBox">
 			<Setter Property="FontSize" Value="16" />
+			<Setter Property="SelectionBrush" Value="rgb(0,120,215)" />
+			<Setter Property="SelectionForegroundBrush" Value="White" />
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="LineHeight" Value="20" />
 			<Setter Property="Margin" Value="0,0,10,0" />
 			<Setter Property="FontFamily" Value="Migu 1M Regular, Hiragino Sans, Noto Sans CJK JP, BIZ UDゴシック, Meiryo UI" />
 		</Style>
 		<Style Selector="ToggleSwitch">
-			<Setter Property="Margin" Value="0,0,10,0" />
+			<Setter Property="Margin" Value="0,0,-2,0" />
+			<Setter Property="FontSize" Value="13" />
+		</Style>
+		<Style Selector="ToggleSwitch /template/ ContentPresenter#PART_OffContentPresenter">
+			<Setter Property="Margin" Value="-8,4,0,0" />
+		</Style>
+		<Style Selector="ToggleSwitch /template/ ContentPresenter#PART_OnContentPresenter">
+			<Setter Property="Margin" Value="-8,4,0,0" />
 		</Style>
 		<Style Selector="Window">
 			<Setter Property="Padding" Value="10,10,0,10" />

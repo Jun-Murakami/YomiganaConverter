@@ -13,9 +13,7 @@ using System.Text.Json.Serialization;
 using System.Diagnostics;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;
-using System.Linq;
 using MessageBoxAvaloniaEnums = MessageBox.Avalonia.Enums;
-
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using Avalonia.Controls.ApplicationLifetimes;

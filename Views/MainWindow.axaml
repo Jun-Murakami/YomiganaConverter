@@ -62,7 +62,7 @@
 		<WrapPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 			<ToggleSwitch IsChecked="{Binding EnglishIsChecked}" OnContent="英語を変換しない" OffContent="英語を変換しない"/>
 			<ToggleSwitch IsChecked="{Binding KatakanaIsChecked}" OnContent="カタカナを変換しない" OffContent="カタカナを変換しない"/>
-			<ToggleSwitch IsChecked="{Binding YouonIsChecked}" OnContent="拗音(ゃゅょゎぁぃぅぇぉ)を繋げる" OffContent="拗音(ゃゅょゎぁぃぅぇぉ)を繋げる"/>
+			<ToggleSwitch IsChecked="{Binding YouonIsChecked}" OnContent="拗音(ゃゅょ)を繋げる" OffContent="拗音(ゃゅょ)を繋げる"/>
 			<ToggleSwitch IsChecked="{Binding SokuonIsChecked}" OnContent="促音(っ)を繋げる" OffContent="促音(っ)を繋げる"/>
 			<ToggleSwitch IsChecked="{Binding SpaceIsChecked}" OnContent="半角スペースで分離する" OffContent="半角スペースで分離する"/>
 		</WrapPanel>

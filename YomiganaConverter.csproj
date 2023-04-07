@@ -6,6 +6,7 @@
 	  <SelfContained>true</SelfContained>
 	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <Nullable>enable</Nullable>
+	  <UseAppHost>true</UseAppHost>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\yomigana.ico</ApplicationIcon>
