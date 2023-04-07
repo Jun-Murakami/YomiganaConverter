@@ -82,7 +82,7 @@ https://n3s.nadesi.com/widget.php?2028&run=1
 
 
 
-https://note.com/junmurakami
+## https://note.com/junmurakami
 
 
    ツールのアップデートやお知らせ等は、上記のnoteかTwitterで行おうと思っています。
