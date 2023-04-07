@@ -21,11 +21,12 @@ namespace YomiganaConverter.Views
 
         private void LoadWindowSizeAndPosition()
         {
+            string appDataPath = GetAppDataDirectory();
             // Check if the JSON file exists
-            if (File.Exists("Config.json"))
+            if (File.Exists(Path.Combine(appDataPath, "Config.json")))
             {
                 // Read the JSON file
-                var jsonString = File.ReadAllText("Config.json");
+                var jsonString = File.ReadAllText(Path.Combine(appDataPath, "Config.json"));
 
                 // Deserialize the JSON string into a WindowSizeAndPosition object
                 var jsonObject = JsonSerializer.Deserialize<WindowSizeAndPosition>(jsonString);
