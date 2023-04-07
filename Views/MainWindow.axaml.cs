@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using System.Text.Json;
 using System.IO;
+using System;
 
 namespace YomiganaConverter.Views
 {
@@ -64,9 +65,13 @@ namespace YomiganaConverter.Views
             // Serialize the object into a JSON string
             var jsonString = JsonSerializer.Serialize(windowSizeAndPosition);
 
-            // Write the JSON string to a file
-            File.WriteAllText("Config.json", jsonString);
+            // Get the app data directory
+            string appDataPath = GetAppDataDirectory();
+
+            // Write the JSON string to a file in the app data directory
+            File.WriteAllText(Path.Combine(appDataPath, "Config.json"), jsonString);
         }
+
 
         public class WindowSizeAndPosition
         {
@@ -75,6 +80,22 @@ namespace YomiganaConverter.Views
             public int X { get; set; }
             public int Y { get; set; }
         }
+
+        private string GetAppDataDirectory()
+        {
+            string appDataPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "YomiganaConverter" // ‚±‚±‚ÅƒAƒvƒŠ–¼‚ðŽw’è‚µ‚Ü‚·
+            );
+
+            if (!Directory.Exists(appDataPath))
+            {
+                Directory.CreateDirectory(appDataPath);
+            }
+
+            return appDataPath;
+        }
+
 
     }
 }

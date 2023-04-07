@@ -11,7 +11,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\yomigana.ico</ApplicationIcon>
 	  
-	  <CFBundleName>Yomigana</CFBundleName> <!-- Also defines .app file name -->
+	  <CFBundleName>YomiganaConverter</CFBundleName> <!-- Also defines .app file name -->
 	  <CFBundleDisplayName>YomiganaConverter</CFBundleDisplayName>
 	  <CFBundleIdentifier>com.example</CFBundleIdentifier>
 	  <CFBundleVersion>1.0.0</CFBundleVersion>
