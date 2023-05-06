@@ -1,8 +1,7 @@
 ﻿using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls;
-using MessageBox.Avalonia;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Enums;
+using Avalonia;
+using Avalonia.VisualTree;
 using ReactiveUI;
 using System;
 using System.Reactive;
@@ -72,13 +71,12 @@ namespace YomiganaConverter.ViewModels
 
         private async Task PasteFromClipboard()
         {
-
-            EditorText1 = await Avalonia.Application.Current.Clipboard.GetTextAsync();
+            EditorText1 = await ApplicationExtensions.GetTopLevel(Avalonia.Application.Current).Clipboard.GetTextAsync();
         }
 
         private async Task CopyToClipboard()
         {
-            await Avalonia.Application.Current.Clipboard.SetTextAsync(EditorText2);
+            await ApplicationExtensions.GetTopLevel(Avalonia.Application.Current).Clipboard.SetTextAsync(EditorText2);
         }
 
         private void ClearText()
@@ -134,6 +132,23 @@ namespace YomiganaConverter.ViewModels
         {
             get => _isChecked5;
             set => this.RaiseAndSetIfChanged(ref _isChecked5, value);
+        }
+    }
+
+    public static class ApplicationExtensions
+    {
+        public static TopLevel? GetTopLevel(this Application app)
+        {
+            if (app.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                return desktop.MainWindow;
+            }
+            if (app.ApplicationLifetime is ISingleViewApplicationLifetime viewApp)
+            {
+                var visualRoot = viewApp.MainView?.GetVisualRoot();
+                return visualRoot as TopLevel;
+            }
+            return null;
         }
     }
 }

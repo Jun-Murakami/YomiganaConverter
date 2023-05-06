@@ -1,13 +1,14 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:YomiganaConverter"
-             x:Class="YomiganaConverter.App">
+             x:Class="YomiganaConverter.App"
+			 RequestedThemeVariant="Light">
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
 
 	<Application.Styles>
-		<FluentTheme Mode="Light"/>
+		<FluentTheme/>
 		<StyleInclude Source="avares://YomiganaConverter/Assets/Styles.axaml" />
 	</Application.Styles>
 </Application>
