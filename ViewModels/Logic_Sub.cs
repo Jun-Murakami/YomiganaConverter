@@ -1,26 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Avalonia.Input.Platform;
-using ReactiveUI;
-using System.Reactive;
-using System.Windows.Input;
 using System.Diagnostics;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Models;
-using System.Linq;
 using MessageBoxAvaloniaEnums = MessageBox.Avalonia.Enums;
-
 using System.Text.RegularExpressions;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Controls;
 using MessageBox.Avalonia.Enums;
 
 namespace YomiganaConverter.ViewModels

@@ -5,19 +5,8 @@ using System.Text;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Avalonia.Input.Platform;
-using ReactiveUI;
-using System.Reactive;
-using System.Windows.Input;
-using System.Text.Json.Serialization;
-using System.Diagnostics;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Models;
 using MessageBoxAvaloniaEnums = MessageBox.Avalonia.Enums;
 using System.Text.RegularExpressions;
-using System.ComponentModel;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Controls;
 
 namespace YomiganaConverter.ViewModels
 {
@@ -26,7 +15,7 @@ namespace YomiganaConverter.ViewModels
         private async Task MainGo()
         {
             if (string.IsNullOrEmpty(EditorText1))
-            { 
+            {
                 return;
             }
             bool isYouon = false;
@@ -42,10 +31,6 @@ namespace YomiganaConverter.ViewModels
             string keep = "";
             string keepKatakana = "";
             string keepEng = "";
-
-
-            //Debug.WriteLine("LyricData : " + string.Join(",",lyricData));
-
 
             foreach (string target in lyricData)
             {
@@ -152,7 +137,6 @@ namespace YomiganaConverter.ViewModels
                         }
                     }
                 }
-
 
                 if (keepKatakana != "")
                 {
@@ -261,6 +245,9 @@ namespace YomiganaConverter.ViewModels
             if (SpaceIsChecked)
             {
                 outputDataStr = Regex.Replace(outputDataStr, " {2,}", " ");
+                outputDataStr = Regex.Replace(outputDataStr, $"{Environment.NewLine} ", Environment.NewLine);
+                outputDataStr = Regex.Replace(outputDataStr, $" {Environment.NewLine}", Environment.NewLine);
+                outputDataStr = Regex.Replace(outputDataStr, $"^[ ]+", "", RegexOptions.Singleline);
             }
             else
             {
@@ -286,12 +273,12 @@ namespace YomiganaConverter.ViewModels
                 using var httpClient = new HttpClient();
                 using var response = await httpClient.PostAsync(URL, requestContent);
 
-                if (response.Content.Headers.ContentType.MediaType == "application/json")
+                if (response.Content.Headers.ContentType!.MediaType == "application/json")
                 {
                     var contentStream = await response.Content.ReadAsStreamAsync();
                     var responseJson = await JsonSerializer.DeserializeAsync<JsonElement>(contentStream);
                     //var jsonString = JsonSerializer.Serialize(responseJson);
-                    return responseJson.GetProperty("converted").GetString().Trim(); ;
+                    return responseJson.GetProperty("converted").GetString()!.Trim(); ;
                 }
                 else
                 {
@@ -303,10 +290,8 @@ namespace YomiganaConverter.ViewModels
                 var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", "APIから正常に文字列を取得できませんでした。Rate limit exceededというエラーが表示されている場合は、大変申し訳ありませんが本日のAPI利用上限を超えております。時間をおいてお試しください。" + ex.Message, MessageBoxAvaloniaEnums.ButtonEnum.Ok, MessageBoxAvaloniaEnums.Icon.Error);
 
                 await messageBoxStandardWindow.ShowDialog(GetWindow());
-                return null;
+                return "";
             }
         }
-
     }
 }
-

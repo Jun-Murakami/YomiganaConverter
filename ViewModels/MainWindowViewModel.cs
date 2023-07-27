@@ -3,13 +3,8 @@ using Avalonia.Controls;
 using Avalonia;
 using Avalonia.VisualTree;
 using ReactiveUI;
-using System;
 using System.Reactive;
 using System.Threading.Tasks;
-using Avalonia.Styling;
-using MessageBox.Avalonia.Models;
-using YomiganaConverter.ViewModels;
-using YomiganaConverter;
 
 namespace YomiganaConverter.ViewModels
 {
@@ -17,7 +12,6 @@ namespace YomiganaConverter.ViewModels
     {
         public MainWindowViewModel()
         {
-
             EnglishIsChecked = true;
             KatakanaIsChecked = true;
             YouonIsChecked = true;
@@ -36,15 +30,13 @@ namespace YomiganaConverter.ViewModels
             RemoveLineBreaksCommand = ReactiveCommand.CreateFromTask(async () => { await RemoveLineBreaks(); });
             HawaWaConvertCommand = ReactiveCommand.CreateFromTask(async () => { await Convert("は", "わ"); });
             HeEConvertCommand = ReactiveCommand.CreateFromTask(async () => { await Convert("へ", "え"); });
-
         }
 
         public Window GetWindow()
         {
-            return (App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)
-                .MainWindow;
+            return (App.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)!.MainWindow!;
         }
-        public ReactiveCommand<Unit, Unit> ShowMessageBoxCommand { get; }
+
         public ReactiveCommand<Unit, Unit> MainGoCommand { get; }
         public ReactiveCommand<Unit, Unit> RemoveLineBreaksCommand { get; }
         public ReactiveCommand<Unit, Unit> HawaWaConvertCommand { get; }
@@ -54,15 +46,15 @@ namespace YomiganaConverter.ViewModels
         public ReactiveCommand<Unit, Unit> CopyToClipboardCommand { get; }
         public ReactiveCommand<Unit, Unit> ClearTextCommand { get; }
 
-        private string _buttonTextHawa;
-        public string ButtonTextHawa
+        private string? _buttonTextHawa;
+        public string? ButtonTextHawa
         {
             get => _buttonTextHawa;
             set => this.RaiseAndSetIfChanged(ref _buttonTextHawa, value);
         }
 
-        private string _buttonTextHeE;
-        public string ButtonTextHeE
+        private string? _buttonTextHeE;
+        public string? ButtonTextHeE
         {
             get => _buttonTextHeE;
             set => this.RaiseAndSetIfChanged(ref _buttonTextHeE, value);
@@ -71,12 +63,12 @@ namespace YomiganaConverter.ViewModels
 
         private async Task PasteFromClipboard()
         {
-            EditorText1 = await ApplicationExtensions.GetTopLevel(Avalonia.Application.Current).Clipboard.GetTextAsync();
+            EditorText1 = await ApplicationExtensions.GetTopLevel(Application.Current!)!.Clipboard!.GetTextAsync();
         }
 
         private async Task CopyToClipboard()
         {
-            await ApplicationExtensions.GetTopLevel(Avalonia.Application.Current).Clipboard.SetTextAsync(EditorText2);
+            await ApplicationExtensions.GetTopLevel(Application.Current!)!.Clipboard!.SetTextAsync(EditorText2);
         }
 
         private void ClearText()
@@ -84,16 +76,16 @@ namespace YomiganaConverter.ViewModels
             EditorText1 = string.Empty;
         }
 
-        private string _editorText1;
+        private string? _editorText1;
 
-        public string EditorText1
+        public string? EditorText1
         {
             get => _editorText1;
             set => this.RaiseAndSetIfChanged(ref _editorText1, value);
         }
-        private string _editorText2;
+        private string? _editorText2;
 
-        public string EditorText2
+        public string? EditorText2
         {
             get => _editorText2;
             set => this.RaiseAndSetIfChanged(ref _editorText2, value);

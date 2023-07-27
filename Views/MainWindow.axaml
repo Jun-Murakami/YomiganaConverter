@@ -1,73 +1,95 @@
-<Window xmlns="https://github.com/avaloniaui"
+<Window x:Class="YomiganaConverter.Views.MainWindow"
+        xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:YomiganaConverter.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="YomiganaConverter.Views.MainWindow"
+        xmlns:vm="using:YomiganaConverter.ViewModels"
+        Title="YomiganaConverter"
+        MinWidth="640" MinHeight="480"
+        d:DesignHeight="450"
+        d:DesignWidth="800"
         Icon="/Assets/yomigana.ico"
-        Title="YomiganaConverter">
+        mc:Ignorable="d">
 
-	<Design.DataContext>
-		<!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-		<vm:MainWindowViewModel/>
-	</Design.DataContext>
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="30"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="50"/>
-			<RowDefinition Height="60"/>
-			<RowDefinition Height="70"/>
-		</Grid.RowDefinitions>
-		<Grid Grid.Row="0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<Grid Grid.Column="0">
-				<TextBlock Text="■歌詞テキスト"/>
-			</Grid>
-			<Grid Grid.Column="1">
-				<TextBlock Text="■変換後テキスト"/>
-			</Grid>
-		</Grid>
-		<Grid Grid.Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<TextBox Grid.Column="0" AcceptsReturn="True" Name="TextAreaL" VerticalAlignment="Stretch"  Text="{Binding EditorText1}"/>
-			<TextBox Grid.Column="1" AcceptsReturn="True" Name="TextAreaR" VerticalAlignment="Stretch"  Text="{Binding EditorText2}" />
-		</Grid>
-		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Content="変換実行" Command="{Binding MainGoCommand}" />
-				<Button Content="クリア" Command="{Binding ClearTextCommand}"/>
-				<Button Content="クリップボードからペースト" Command="{Binding PasteFromClipboardCommand}"/>
-			</StackPanel>
-			<StackPanel Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button Content="{Binding ButtonTextHawa}" Command="{Binding HawaWaConvertCommand}"/>
-				<Button Content="{Binding ButtonTextHeE}" Command="{Binding HeEConvertCommand}"/>
-				<Button Content="改行削除" Command="{Binding RemoveLineBreaksCommand}" />
-				<Button Content="クリップボードへコピー" Command="{Binding CopyToClipboardCommand}"/>
-			</StackPanel>
-		</Grid>
-		<WrapPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-			<ToggleSwitch IsChecked="{Binding EnglishIsChecked}" OnContent="英語を変換しない" OffContent="英語を変換しない"/>
-			<ToggleSwitch IsChecked="{Binding KatakanaIsChecked}" OnContent="カタカナを変換しない" OffContent="カタカナを変換しない"/>
-			<ToggleSwitch IsChecked="{Binding YouonIsChecked}" OnContent="拗音(ゃゅょ)を繋げる" OffContent="拗音(ゃゅょ)を繋げる"/>
-			<ToggleSwitch IsChecked="{Binding SokuonIsChecked}" OnContent="促音(っ)を繋げる" OffContent="促音(っ)を繋げる"/>
-			<ToggleSwitch IsChecked="{Binding SpaceIsChecked}" OnContent="半角スペースで分離する" OffContent="半角スペースで分離する"/>
-		</WrapPanel>
-		<StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-			<Image Source="/Assets/sgoo.png" Height="50" />
-		</StackPanel>
-	</Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Text="■歌詞テキスト" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Text="■変換後テキスト" />
+        <TextBox Name="TextAreaL"
+                 Grid.Row="1"
+                 Grid.Column="0"
+                 VerticalAlignment="Stretch"
+                 AcceptsReturn="True"
+                 Text="{Binding EditorText1}" />
+        <TextBox Name="TextAreaR"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 VerticalAlignment="Stretch"
+                 AcceptsReturn="True"
+                 Text="{Binding EditorText2}" />
+        <WrapPanel Grid.Row="2"
+                   Grid.Column="0"
+                   Margin="0,3,0,10"
+                   HorizontalAlignment="Center"
+                   Orientation="Horizontal">
+            <Button Command="{Binding MainGoCommand}" Content="変換実行" />
+            <Button Command="{Binding ClearTextCommand}" Content="クリア" />
+            <Button Command="{Binding PasteFromClipboardCommand}" Content="クリップボードからペースト" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="2"
+                   Grid.Column="1"
+                   Margin="0,3,0,10"
+                   HorizontalAlignment="Center"
+                   Orientation="Horizontal">
+            <Button Command="{Binding HawaWaConvertCommand}" Content="{Binding ButtonTextHawa}" />
+            <Button Command="{Binding HeEConvertCommand}" Content="{Binding ButtonTextHeE}" />
+            <Button Command="{Binding RemoveLineBreaksCommand}" Content="改行削除" />
+            <Button Command="{Binding CopyToClipboardCommand}" Content="クリップボードへコピー" />
+        </WrapPanel>
+        <WrapPanel Grid.Row="3"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Orientation="Horizontal">
+            <ToggleSwitch IsChecked="{Binding EnglishIsChecked}"
+                          OffContent="英語を変換しない"
+                          OnContent="英語を変換しない" />
+            <ToggleSwitch IsChecked="{Binding KatakanaIsChecked}"
+                          OffContent="カタカナを変換しない"
+                          OnContent="カタカナを変換しない" />
+            <ToggleSwitch IsChecked="{Binding YouonIsChecked}"
+                          OffContent="拗音(ゃゅょ)を繋げる"
+                          OnContent="拗音(ゃゅょ)を繋げる" />
+            <ToggleSwitch IsChecked="{Binding SokuonIsChecked}"
+                          OffContent="促音(っ)を繋げる"
+                          OnContent="促音(っ)を繋げる" />
+            <ToggleSwitch IsChecked="{Binding SpaceIsChecked}"
+                          OffContent="半角スペースで分離する"
+                          OnContent="半角スペースで分離する" />
+        </WrapPanel>
+        <Panel Grid.Row="4"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Top">
+            <Image Height="50" Source="/Assets/sgoo.png" />
+        </Panel>
+    </Grid>
 </Window>
