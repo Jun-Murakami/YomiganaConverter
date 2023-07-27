@@ -10,17 +10,6 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\yomigana.ico</ApplicationIcon>
-	  
-	  <CFBundleName>YomiganaConverter</CFBundleName> <!-- Also defines .app file name -->
-	  <CFBundleDisplayName>YomiganaConverter</CFBundleDisplayName>
-	  <CFBundleIdentifier>com.example</CFBundleIdentifier>
-	  <CFBundleVersion>1.0.0</CFBundleVersion>
-	  <CFBundlePackageType>APPL</CFBundlePackageType>
-	  <CFBundleSignature>????</CFBundleSignature>
-	  <CFBundleExecutable>Yomigana</CFBundleExecutable>
-	  <CFBundleIconFile>yomigana.icns</CFBundleIconFile> <!-- Will be copied from output directory -->
-	  <NSPrincipalClass>NSApplication</NSPrincipalClass>
-	  <NSHighResolutionCapable>true</NSHighResolutionCapable>
   </PropertyGroup>
 
   <ItemGroup>
