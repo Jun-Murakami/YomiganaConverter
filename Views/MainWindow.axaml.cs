@@ -36,8 +36,8 @@ namespace YomiganaConverter.Views
                 var workingArea = screen!.WorkingArea;
 
                 double dpiScaling = screen.Scaling!;
-                this.Width = (workingArea.Height / 5) * 4 * dpiScaling;
-                this.Height = (workingArea.Height / 5) * 3 * dpiScaling;
+                this.Width = (workingArea.Height / 5) * 4;
+                this.Height = (workingArea.Height / 5) * 3;
 
                 this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }

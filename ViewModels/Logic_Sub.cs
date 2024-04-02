@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using MessageBoxAvaloniaEnums = MessageBox.Avalonia.Enums;
 using System.Text.RegularExpressions;
-using MessageBox.Avalonia.Enums;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
+using MsBox.Avalonia.Dto;
+using Avalonia.Controls;
 
 namespace YomiganaConverter.ViewModels
 {
@@ -15,9 +17,20 @@ namespace YomiganaConverter.ViewModels
         private async Task RemoveLineBreaks()
         {
 
-            var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Confirmation", $"変換後テキストの改行を削除して繋げます。{Environment.NewLine}（空白行のみ残ります。）{Environment.NewLine}{Environment.NewLine}この操作は元に戻せません。実行しますか？", MessageBoxAvaloniaEnums.ButtonEnum.OkCancel, MessageBoxAvaloniaEnums.Icon.Question);
+            var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandard(
+                new MessageBoxStandardParams
+                {
+                    ContentTitle = "Confirmation",
+                    ContentMessage = $"変換後テキストの改行を削除して繋げます。{Environment.NewLine}（空白行のみ残ります。）{Environment.NewLine}{Environment.NewLine}この操作は元に戻せません。実行しますか？",
+                    ButtonDefinitions = ButtonEnum.OkCancel,
+                    Icon = Icon.Question,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    CanResize = false,
+                    ShowInCenter = true
+                }
+                );
 
-            var result = await messageBoxStandardWindow.ShowDialog(GetWindow());
+            var result = await messageBoxStandardWindow.ShowWindowDialogAsync(GetWindow());
             if (result == ButtonResult.Ok)
             {
                 if (string.IsNullOrEmpty(EditorText2))
@@ -137,9 +150,18 @@ namespace YomiganaConverter.ViewModels
                     }
                     if (convertList.Count != convertStock.Count)
                     {
-                        var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Confirmation", "[" + strA + "]と[" + strB + "]の合計数が前回の変換時と異なります。再変換しますか？", MessageBoxAvaloniaEnums.ButtonEnum.OkCancel,MessageBoxAvaloniaEnums.Icon.Question);
+                        var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandard(
+                            new MessageBoxStandardParams {
+                                ContentTitle = "Confirmation",
+                                ContentMessage = "[" + strA + "]と[" + strB + "]の合計数が前回の変換時と異なります。再変換しますか？",
+                                ButtonDefinitions = ButtonEnum.OkCancel,
+                                Icon = Icon.Question,
+                                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                                CanResize = false,
+                                ShowInCenter = true
+                            });
 
-                        var result = await messageBoxStandardWindow.ShowDialog(GetWindow());
+                        var result = await messageBoxStandardWindow.ShowWindowDialogAsync(GetWindow());
                         if (result != ButtonResult.Ok)
                         {
                             return;
@@ -237,9 +259,9 @@ namespace YomiganaConverter.ViewModels
             }
             catch (Exception ex)
             {
-                var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message + ex.StackTrace, MessageBoxAvaloniaEnums.ButtonEnum.Ok, MessageBoxAvaloniaEnums.Icon.Error);
+                var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandard("Error", ex.Message + ex.StackTrace, ButtonEnum.Ok, Icon.Error);
 
-                await messageBoxStandardWindow.ShowDialog(GetWindow());
+                await messageBoxStandardWindow.ShowWindowDialogAsync(GetWindow());
                 Debug.WriteLine(ex.Message + ex.StackTrace + ex.InnerException);
 
                 return ;

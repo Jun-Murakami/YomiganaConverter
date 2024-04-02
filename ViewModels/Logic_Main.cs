@@ -5,7 +5,8 @@ using System.Text;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using MessageBoxAvaloniaEnums = MessageBox.Avalonia.Enums;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using System.Text.RegularExpressions;
 
 namespace YomiganaConverter.ViewModels
@@ -287,9 +288,9 @@ namespace YomiganaConverter.ViewModels
             }
             catch (Exception ex)
             {
-                var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", "APIから正常に文字列を取得できませんでした。Rate limit exceededというエラーが表示されている場合は、大変申し訳ありませんが本日のAPI利用上限を超えております。時間をおいてお試しください。" + ex.Message, MessageBoxAvaloniaEnums.ButtonEnum.Ok, MessageBoxAvaloniaEnums.Icon.Error);
+                var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandard("Error", "APIから正常に文字列を取得できませんでした。Rate limit exceededというエラーが表示されている場合は、大変申し訳ありませんが本日のAPI利用上限を超えております。時間をおいてお試しください。" + ex.Message, ButtonEnum.Ok, Icon.Error);
 
-                await messageBoxStandardWindow.ShowDialog(GetWindow());
+                await messageBoxStandardWindow.ShowWindowDialogAsync(GetWindow());
                 return "";
             }
         }
