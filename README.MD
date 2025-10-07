@@ -1,3 +1,5 @@
+### Ver.3に移行しました。
+https://github.com/Jun-Murakami/yomigana3
 
 ---
 
